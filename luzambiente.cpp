@@ -15,11 +15,14 @@ void desenha_chao(){
     // Inicializa display lists para criação do chão
     glNewList(CHAO, GL_COMPILE);
 
+    glColor3f(0.98, 0.92, 0.84);
+
     // Criação da malha formada por triangulos adjacentes e as Transformações geometricas utilizadas
     glPushMatrix();
     glTranslatef(-44.0, -11.5, -65.0);
     glRotatef(90.0, 1.0, 0.0, 0.0);
     glBegin(GL_TRIANGLE_STRIP);
+    glNormal3f(0.0, 1.0, 0.0);
     for(float y = 1.0; y < 100.0; y += 5.0){
         for(float x = 1.0; x < 100.0; x += 5.0){
             glVertex3f (x, y, 0.0);
@@ -37,6 +40,8 @@ void desenha_chao(){
 void desenha_mesa(){
     // Inicializa display lists para criação da mesa
     glNewList(MESA, GL_COMPILE); // Mesa
+
+    glColor3f(0.58, 0.29, 0.0);
 
     //Criação da tabua da mesa.
     glPushMatrix();
@@ -82,6 +87,8 @@ void desenha_cadeiras(){
     // Inicializa display lists para criação das cadeiras
     glNewList(CADEIRA, GL_COMPILE);
 
+    glColor3f(0.58, 0.29, 0.0);
+
     //cadeira da esquerda
 
     //pé direito inferior
@@ -116,6 +123,8 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
+    glColor3f(0.8, 0.49, 0.19);
+
     //banco
     glPushMatrix();
     glTranslatef(-18.0, 0.0, 0.0);
@@ -132,6 +141,8 @@ void desenha_cadeiras(){
     glScalef(1.0, 0.25, 1.0);
     glutSolidCube(12.0);
     glPopMatrix();
+
+    glColor3f(0.58, 0.29, 0.0);
 
     //cadeira da direita
 
@@ -167,6 +178,8 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
+    glColor3f(0.8, 0.49, 0.19);
+
     //banco
     glPushMatrix();
     glTranslatef(18.0, 0.0, 0.0);
@@ -191,6 +204,8 @@ void desenha_luminaria(){
     // Inicializa display lists para criação da luminaria
     glNewList(LUMINARIA, GL_COMPILE);
 
+    glColor3f(0.0, 0.0, 0.0);
+
     //proteção da lampada
     glPushMatrix();
     glTranslatef (-24.5, 19.5, -39.5);
@@ -213,6 +228,8 @@ void desenha_luminaria(){
     gluDisk(q, 1.0, 3.0, 10.0, 5.0);
     glPopMatrix();
 
+    glColor3f(1.0, 1.0, 0.0);
+
     //lampada
     glPushMatrix();
     glTranslatef (-26.5, 19.5, -45.0);
@@ -225,6 +242,8 @@ void desenha_luminaria(){
 void desenha_garrafa(){
     // Inicializa display lists para criação da garrafa
     glNewList(GARRAFA, GL_COMPILE);
+
+    glColor3f(0.18, 0.54, 0.34);
 
     //cilindro inferior
     glPushMatrix();
@@ -246,6 +265,8 @@ void desenha_garrafa(){
     glRotatef(90.0, 1.0, 0.0, 0.0);
     gluCylinder(q, 0.5, 0.5, 1.0, 10.0, 5.0);
     glPopMatrix();
+
+    glColor3f(0.94, 1.0, 0.94);
 
     //tampa
     glPushMatrix();
@@ -286,18 +307,24 @@ void desenha_taca(){
 }
 
 void init(int option){
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    GLfloat luzAmbiente[4] = {0.2, 0.2, 0.2, 1.0};
+    GLfloat light_position[] = {0.0, 20.0, 25.0, 0.0 };
+
+    glClearColor (0.1, 0.1, 0.1, 0.0);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    if (option == 1)
-        glShadeModel(GL_FLAT);
-    else if (option == 2)
-        glShadeModel(GL_SMOOTH);
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
-    glEnable(GL_DEPTH_TEST);
+	if (option == 1)
+        glShadeModel(GL_SMOOTH);
+    if (option == 2)
+        glShadeModel(GL_FLAT);
+
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_DEPTH_TEST);
 
     q = gluNewQuadric();
 
@@ -311,7 +338,6 @@ void init(int option){
 
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3f(1.0, 1.0, 1.0);
     glLoadIdentity();
 
 // Chama o display list do chao para exibi-lo
@@ -351,19 +377,18 @@ void perspectiva(int w, int h){
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-
     gluPerspective(60.0, (GLfloat)w/(GLfloat)h, 1.0, 200.0);
-    gluLookAt(-10.0, 30.0, 50.0,0.0, -2.0, 0.0, 0.0, 1.0, 0.0);
-
+    gluLookAt(-10.0, 30.0, 50.0, 0.0, -2.0, 0.0, 0.0, 1.0, 0.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
 void keyboard(unsigned char key, int x, int y){
-    switch(key)
-    {
-    case 27:
-        exit(0);
-        break;
+    switch(key){
+        case 27:
+            exit(0);
+            break;
+        default:
+            break;
     }
 }
 
@@ -373,13 +398,13 @@ int main(int argc, char** argv){
     glutInitWindowSize(640, 480);
 
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("sombreamento constante");
+    glutCreateWindow("smooth");
     init(1);
     glutDisplayFunc(display);
     glutReshapeFunc(perspectiva);
 
     glutInitWindowPosition(800, 100);
-    glutCreateWindow("sombreamento gouraud");
+    glutCreateWindow("flat");
     init(2);
     glutDisplayFunc(display);
     glutReshapeFunc(perspectiva);
