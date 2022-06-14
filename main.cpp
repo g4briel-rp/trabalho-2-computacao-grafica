@@ -287,18 +287,32 @@ void desenha_taca(){
 }
 
 void init(int option){
-    GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
-    GLfloat posicao[] = {0.0, 20.0, 25.0, 0.0};
+    GLfloat luzAmbiente[] = {0.2, 0.2, 0.2, 1.0};
+    GLfloat diffuseLight[] = { 1.0, 1.0, 1.0, 1.0};
+    GLfloat specularLight[] = { 0.5, 0.5, 0.5, 1.0};
+    GLfloat posicao[] = {0.0, 0.0, 20.0, 0.0};
+    GLfloat posicao2[] = {0.0, 0.0, 0.0, 1.0};
+    GLfloat direcao[] = {0.0, 0.0, 1.0};
+    GLfloat expoente[] = {0.0};
 
     glClearColor (0.5, 0.5, 0.5, 0.0);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     //glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
     glLightfv(GL_LIGHT0, GL_POSITION, posicao);
+
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseLight);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, specularLight);
+    glLightfv(GL_LIGHT1, GL_POSITION, posicao2);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 180);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direcao);
+    glLightfv(GL_LIGHT1, GL_SPOT_EXPONENT, expoente);
+
     glEnable(GL_NORMALIZE);
     glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHT1);
 	glEnable(GL_DEPTH_TEST);
 	if (option == 1)
         glShadeModel(GL_SMOOTH);
