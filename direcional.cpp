@@ -288,7 +288,7 @@ void desenha_taca(){
 
 void init(int option){
     GLfloat luzAmbiente[] = {0.25, 0.25, 0.25, 1.0};
-    GLfloat posicao[] = {0.0, 50.0, 50.0, 1.0};
+    GLfloat posicao[] = {0.0, 100.0, 50.0, 1.0};
 
     glClearColor (0.5, 0.5, 0.5, 0.0);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
