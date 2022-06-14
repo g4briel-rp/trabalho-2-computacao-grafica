@@ -12,10 +12,10 @@
 GLUquadricObj *q;
 
 void desenha_chao(){
-    // Inicializa display lists para criação do chão
+    // Inicializa display lists para criaÃ§Ã£o do chÃ£o
     glNewList(CHAO, GL_COMPILE);
 
-    // Criação da malha formada por triangulos adjacentes e as Transformações geometricas utilizadas
+    // CriaÃ§Ã£o da malha formada por triangulos adjacentes e as TransformaÃ§Ãµes geometricas utilizadas
     glPushMatrix();
     glTranslatef(-44.0, -11.5, -65.0);
     glRotatef(90.0, 1.0, 0.0, 0.0);
@@ -36,40 +36,40 @@ void desenha_chao(){
 }
 
 void desenha_mesa(){
-    // Inicializa display lists para criação da mesa
+    // Inicializa display lists para criaÃ§Ã£o da mesa
     glNewList(MESA, GL_COMPILE); // Mesa
 
-    //Criação da tabua da mesa.
+    //CriaÃ§Ã£o da tabua da mesa.
     glPushMatrix();
     glTranslatef(0.0, 10.0, 0.0);
     glScalef(5.0, 0.5, 10.0);
     glutSolidCube(5.0);
     glPopMatrix();
 
-    // Criação do pé da mesa
+    // CriaÃ§Ã£o do pÃ© da mesa
 
-    //pé esquerdo inferior
+    //pÃ© esquerdo inferior
     glPushMatrix();
     glTranslatef(-8.0, -1.4, 20.0);
     glScalef(0.5, 4.0, 0.5);
     glutSolidCube(5.0);
     glPopMatrix();
 
-    //pé direito inferior
+    //pÃ© direito inferior
     glPushMatrix();
     glTranslatef(8.0, -1.4, 20.0);
     glScalef(0.5, 4.0, 0.5);
     glutSolidCube(5.0);
     glPopMatrix();
 
-    //pé esquerdo superior
+    //pÃ© esquerdo superior
     glPushMatrix();
     glTranslatef(-8.0, -1.4, -20.0);
     glScalef(0.5, 4.0, 0.5);
     glutSolidCube(5.0);
     glPopMatrix();
 
-    //pé direito superior
+    //pÃ© direito superior
     glPushMatrix();
     glTranslatef(8.0, -1.4, -20.0);
     glScalef(0.5, 4.0, 0.5);
@@ -80,12 +80,12 @@ void desenha_mesa(){
 }
 
 void desenha_cadeiras(){
-    // Inicializa display lists para criação das cadeiras
+    // Inicializa display lists para criaÃ§Ã£o das cadeiras
     glNewList(CADEIRA, GL_COMPILE);
 
     //cadeira da esquerda
 
-    //pé direito inferior
+    //pÃ© direito inferior
     glPushMatrix();
     glTranslatef(-11.5, -6.5, 1.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -93,7 +93,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé direito superior
+    //pÃ© direito superior
     glPushMatrix();
     glTranslatef(-16.0, -6.5, -6.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -101,7 +101,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé esquerdo inferior
+    //pÃ© esquerdo inferior
     glPushMatrix();
     glTranslatef(-20.0, -6.5, 6.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -109,7 +109,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé esquerdo superior
+    //pÃ© esquerdo superior
     glPushMatrix();
     glTranslatef(-24.5, -6.5, -1.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -136,7 +136,7 @@ void desenha_cadeiras(){
 
     //cadeira da direita
 
-    //pé direito inferior
+    //pÃ© direito inferior
     glPushMatrix();
     glTranslatef(24.5, -6.5, 1.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -144,7 +144,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé direito superior
+    //pÃ© direito superior
     glPushMatrix();
     glTranslatef(20.0, -6.5, -6.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -152,7 +152,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé esquerdo inferior
+    //pÃ© esquerdo inferior
     glPushMatrix();
     glTranslatef(16.5, -6.5, 6.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -160,7 +160,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
-    //pé esquerdo superior
+    //pÃ© esquerdo superior
     glPushMatrix();
     glTranslatef(11.5, -6.5, -2.5);
     glRotatef(30.0, 0.0, 1.0, 0.0);
@@ -189,10 +189,10 @@ void desenha_cadeiras(){
 }
 
 void desenha_luminaria(){
-    // Inicializa display lists para criação da luminaria
+    // Inicializa display lists para criaÃ§Ã£o da luminaria
     glNewList(LUMINARIA, GL_COMPILE);
 
-    //proteção da lampada
+    //proteÃ§Ã£o da lampada
     glPushMatrix();
     glTranslatef (-24.5, 19.5, -39.5);
     glRotatef(-160.0, 0.0, 1.0, 0.0);
@@ -207,7 +207,7 @@ void desenha_luminaria(){
     gluCylinder(q, 1.0, 1.0, 10.0, 5.0, 5.0);
     glPopMatrix();
 
-    //pé
+    //pÃ©
     glPushMatrix();
     glTranslatef (-28.0, -11.5, -50.0);
     glRotatef(90.0, 1.0, 0.0, 0.0);
@@ -224,7 +224,7 @@ void desenha_luminaria(){
 }
 
 void desenha_garrafa(){
-    // Inicializa display lists para criação da garrafa
+    // Inicializa display lists para criaÃ§Ã£o da garrafa
     glNewList(GARRAFA, GL_COMPILE);
 
     //cilindro inferior
@@ -259,7 +259,7 @@ void desenha_garrafa(){
 }
 
 void desenha_taca(){
-    // Inicializa display lists para criação da taça
+    // Inicializa display lists para criaÃ§Ã£o da taÃ§a
     glNewList(TACA, GL_COMPILE);
 
     //cilindro superior
@@ -276,7 +276,7 @@ void desenha_taca(){
     gluCylinder(q, 0.15, 0.15, 2.5, 10.0, 5.0);
     glPopMatrix();
 
-    //base da taça
+    //base da taÃ§a
     glPushMatrix();
     glTranslatef (0.0, 11.5, 0.0);
     glRotatef(90.0, 1.0, 0.0, 0.0);
@@ -354,7 +354,7 @@ void display(void){
     glCallList(GARRAFA);
     glPopMatrix();
 
-//Chama o display list da taça para exibi-lo
+//Chama o display list da taÃ§a para exibi-lo
     glPushMatrix();
     glCallList(TACA);
     glPopMatrix();
