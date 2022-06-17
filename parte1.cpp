@@ -20,7 +20,7 @@ void desenha_chao(){
     glTranslatef(-44.0, -11.5, -65.0);
     glRotatef(90.0, 1.0, 0.0, 0.0);
     glBegin(GL_TRIANGLE_STRIP);
-    glNormal3f(1.0, 0.0, 0.0);
+    glNormal3f(0.0, 1.0, 0.0);
     for(float y = 1.0; y < 100.0; y += 5.0){
         for(float x = 1.0; x < 100.0; x += 5.0){
             glVertex3f (x, y, 0.0);
