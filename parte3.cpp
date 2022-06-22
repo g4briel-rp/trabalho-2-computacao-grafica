@@ -312,7 +312,8 @@ void defineIluminacao(){
     GLfloat luzEspecular[] = {0.5, 0.5, 0.5, 1.0};
 
     GLfloat posicaoLuz[] = {0.0, 50.0, 50.0, 1.0};
-    GLfloat spotPosition[] = {-25.0, 25.0, 0.0, 1.0};
+    GLfloat spotPosition[] = {-50.0, 75.0, 0.0, 1.0};
+    GLfloat spotCutOff[] = {90.0};
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
@@ -321,6 +322,7 @@ void defineIluminacao(){
 
     glLightfv(GL_LIGHT1, GL_DIFFUSE, luzDifusa);
     glLightfv(GL_LIGHT1, GL_SPECULAR, luzEspecular);
+    glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
     glLightfv(GL_LIGHT1, GL_POSITION, spotPosition);
 }
 
