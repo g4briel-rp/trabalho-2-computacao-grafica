@@ -11,10 +11,12 @@
 
 GLUquadricObj *q;
 
+// Função com os comandos para criação do chão
 void desenha_chao(){
     // Inicializa display lists para criação do chão
     glNewList(CHAO, GL_COMPILE);
 
+    // definição da cor
     glColor3f(0.98, 0.92, 0.84);
 
     // Criação da malha formada por triangulos adjacentes e as Transformações geometricas utilizadas
@@ -37,10 +39,12 @@ void desenha_chao(){
     glEndList();
 }
 
+// Função com os comandos para criação da mesa
 void desenha_mesa(){
     // Inicializa display lists para criação da mesa
     glNewList(MESA, GL_COMPILE); // Mesa
 
+    // definição da cor
     glColor3f(0.58, 0.29, 0.0);
 
     //Criação da tabua da mesa.
@@ -83,10 +87,12 @@ void desenha_mesa(){
     glEndList();
 }
 
+// Função com os comandos para criação das cadeiras
 void desenha_cadeiras(){
     // Inicializa display lists para criação das cadeiras
     glNewList(CADEIRA, GL_COMPILE);
 
+    // definição da cor
     glColor3f(0.58, 0.29, 0.0);
 
     //cadeira da esquerda
@@ -123,6 +129,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
+    // definição da cor
     glColor3f(0.8, 0.49, 0.19);
 
     //banco
@@ -142,6 +149,7 @@ void desenha_cadeiras(){
     glutSolidCube(12.0);
     glPopMatrix();
 
+    // definição da cor
     glColor3f(0.58, 0.29, 0.0);
 
     //cadeira da direita
@@ -178,6 +186,7 @@ void desenha_cadeiras(){
     glutSolidCube(2.0);
     glPopMatrix();
 
+    // definição da cor
     glColor3f(0.8, 0.49, 0.19);
 
     //banco
@@ -200,10 +209,12 @@ void desenha_cadeiras(){
     glEndList();
 }
 
+// Função com os comandos para criação da luminaria
 void desenha_luminaria(){
     // Inicializa display lists para criação da luminaria
     glNewList(LUMINARIA, GL_COMPILE);
 
+    // definição da cor
     glColor3f(0.0, 0.0, 0.0);
 
     //proteção da lampada
@@ -228,6 +239,7 @@ void desenha_luminaria(){
     gluDisk(q, 1.0, 3.0, 10.0, 5.0);
     glPopMatrix();
 
+    // definição da cor
     glColor3f(1.0, 1.0, 0.0);
 
     //lampada
@@ -239,10 +251,12 @@ void desenha_luminaria(){
     glEndList();
 }
 
+// Função com os comandos para criação da garrafa
 void desenha_garrafa(){
     // Inicializa display lists para criação da garrafa
     glNewList(GARRAFA, GL_COMPILE);
 
+    // definição da cor
     glColor3f(0.18, 0.54, 0.34);
 
     //cilindro inferior
@@ -266,6 +280,7 @@ void desenha_garrafa(){
     gluCylinder(q, 0.5, 0.5, 1.0, 10.0, 5.0);
     glPopMatrix();
 
+    // definição da cor
     glColor3f(0.94, 1.0, 0.94);
 
     //tampa
@@ -278,6 +293,7 @@ void desenha_garrafa(){
     glEndList();
 }
 
+// Função com os comandos para criação da taça
 void desenha_taca(){
     // Inicializa display lists para criação da taça
     glNewList(TACA, GL_COMPILE);
@@ -306,20 +322,24 @@ void desenha_taca(){
     glEndList();
 }
 
+// Função responsável pela especificação dos parâmetros de iluminação
 void defineIluminacao(){
     GLfloat luzAmbiente[] = {0.2, 0.2, 0.2, 1.0};
     GLfloat luzDifusa[] = {0.8, 0.8, 0.8, 1.0};
     GLfloat luzEspecular[] = {0.5, 0.5, 0.5, 1.0};
 
     GLfloat posicaoLuz[] = {0.0, 50.0, 50.0, 1.0};
-    GLfloat spotPosition[] = {-50.0, 75.0, 0.0, 1.0};
-    GLfloat spotCutOff[] = {90.0};
+    GLfloat spotPosition[] = {-25.0, 25.0, 0.0, 1.0};
+    GLfloat spotCutOff[] = {75.0};
 
+    // Ativa o uso da luz ambiente
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+
+    // Define os parâmetros da luz de número 0
     glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa);
     glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
 
+    // Define os parâmetros da luz de número 1
     glLightfv(GL_LIGHT1, GL_DIFFUSE, luzDifusa);
     glLightfv(GL_LIGHT1, GL_SPECULAR, luzEspecular);
     glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
@@ -331,19 +351,32 @@ void init(int option){
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     if (option == 1)
+        // Habilita o modelo de colorização de Gouraud
         glShadeModel(GL_SMOOTH);
     if (option == 2)
+        // Habilita o modelo de colorização constante
         glShadeModel(GL_FLAT);
 
+    // Habilita a definição da cor do material, escolhida dentro de cada função desenha
     glEnable(GL_COLOR_MATERIAL);
+
+    // Habilita o depth-buffering
     glEnable(GL_DEPTH_TEST);
+
+    //Habilita o uso de iluminação
     glEnable(GL_LIGHTING);
+
+    // Habilita a luz de número 0
     glEnable(GL_LIGHT0);
+
+    // Habilita a luz de número 1
     glEnable(GL_LIGHT1);
+
     glEnable(GL_NORMALIZE);
 
     q = gluNewQuadric();
 
+    // chamada das funções desenha
     desenha_chao();
     desenha_mesa();
     desenha_cadeiras();
@@ -354,8 +387,6 @@ void init(int option){
 
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-    defineIluminacao();
 
 // Chama o display list do chao para exibi-lo
     glPushMatrix();
@@ -394,6 +425,7 @@ void perspectiva(int w, int h){
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+    // Chama a função que especifica os parâmetros de iluminação
     defineIluminacao();
     gluPerspective(70.0, (GLfloat)w/(GLfloat)h, 1.0, 200.0);
     gluLookAt(0.0, 30.0, 50.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
